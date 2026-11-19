@@ -2,10 +2,10 @@
 
 const ingredientGroups = {
   Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions|Pineapple|Garlic',
-  Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame|Canned light tuna in water|Lean ground beef|Smoked salmon',
-  Dairy: 'Plain Greek yogurt|Parmesan|Feta|Cottage cheese|Milk',
-  Grains: 'Whole-grain bread|Rolled oats|Whole-wheat tortilla|Quinoa|Brown rice|Whole-wheat pasta|Corn tortillas',
-  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water|Smoked paprika',
+  Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame|Canned light tuna in water|Lean ground beef|Smoked salmon|Bacon',
+  Dairy: 'Plain Greek yogurt|Parmesan|Feta|Cottage cheese|Milk|Cheddar',
+  Grains: 'Whole-grain bread|Rolled oats|Whole-wheat tortilla|Quinoa|Brown rice|Whole-wheat pasta|Corn tortillas|Whole-wheat English muffin|Whole-wheat flour',
+  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water|Smoked paprika|Baking soda',
 };
 
 const ingredients = Object.fromEntries(
@@ -101,6 +101,15 @@ const recipeRows = [
   ['Smoked Salmon Cucumber Bites','Snack',10,0,2,'PG','Crunchy cucumber rounds with lemon yogurt, smoked salmon and scallions.',
     'Cucumber:1:each|Smoked salmon:100:g|Plain Greek yogurt:0.5:cup|Lemon:0.25:each|Scallions:1:each',
     'Cut the cucumber into 12 thick rounds and pat the tops dry. Thinly slice the scallion.|Stir a squeeze of lemon into the yogurt. Top each round with a spoonful of yogurt, a piece of smoked salmon and scallion.|Serve six rounds per person.'],
+  ['Strawberry Mango Fruit Smoothie','Snack',5,0,1,'VG','A bright strawberry, mango and banana smoothie with creamy Greek yogurt.',
+    'Strawberries:0.5:cup|Mango:0.5:cup|Banana:0.5:each|Plain Greek yogurt:0.5:cup|Milk:0.5:cup',
+    'Hull the strawberries and dice the mango, or use the same amount of frozen fruit. Peel half a banana.|Add milk and yogurt to the blender, followed by the fruit. Blend until smooth, adding a splash of water if needed. Pour into a glass and serve.'],
+  ['Bacon, Egg and Cheese Breakfast Sandwich','Breakfast',5,15,1,'P','Crisp bacon, a fried egg and melted cheddar on a toasted whole-wheat English muffin.',
+    'Bacon:2:slices|Eggs:1:each|Cheddar:25:g|Whole-wheat English muffin:1:each',
+    'Cook the bacon in a skillet over medium heat until crisp, about 6–8 minutes, turning halfway. Transfer to a paper towel and carefully pour off all but a thin coating of fat.|Split and toast the muffin while the bacon cooks. Fry the egg in the skillet until the white and yolk are set. Lay the cheddar on the egg and cover briefly to melt.|Layer the egg and bacon on the toasted muffin. Serve warm.'],
+  ['Whole-Wheat Banana Bread','Snack',15,55,10,'VM','A cinnamon-scented whole-wheat loaf with ripe bananas, Greek yogurt and a touch of maple syrup.',
+    'Banana:3:each|Whole-wheat flour:1.5:cups|Eggs:2:each|Plain Greek yogurt:0.25:cup|Olive oil:0.25:cup|Maple syrup:0.25:cup|Baking powder:1:tsp|Baking soda:0.5:tsp|Ground cinnamon:1:tsp|Salt:0.25:tsp',
+    'Heat oven to 350°F and line a 9-by-5-inch loaf pan with parchment. Mash the three medium ripe bananas to make about 1¼ cups. Whisk with eggs, yogurt, oil and maple syrup.|Whisk flour, baking powder, baking soda, cinnamon and salt in a separate bowl. Fold the dry ingredients into the banana mixture just until no streaks of flour remain.|Scrape into the pan and bake for 45–55 minutes, until a toothpick in the center comes out clean or with a few moist crumbs. Cool in the pan for 15 minutes, then transfer to a rack before slicing into ten pieces.'],
 ];
 
 const dietaryTags = {P:'High-protein', V:'Vegetarian', D:'Dairy-free', G:'Gluten-free', M:'Meal-prep friendly'};
