@@ -69,6 +69,17 @@ function save(message) {
   if (message) announce(message);
 }
 
+function removeRetiredRecipe(id) {
+  const slots = Object.keys(state.plan).filter((key) => state.plan[key].id === id);
+  const wasFavorite = state.favorites.includes(id);
+  if (!slots.length && !wasFavorite) return;
+  slots.forEach((key) => delete state.plan[key]);
+  state.favorites = state.favorites.filter((favoriteId) => favoriteId !== id);
+  save("White Bean Tomato Toast was retired and removed from your planner and favorites.");
+}
+
+removeRetiredRecipe("white-bean-tomato-toast");
+
 function h(value) {
   return String(value ?? "").replace(
     /[&<>"']/g,
@@ -137,7 +148,7 @@ function photo(recipe) {
     recipe.photo +
     '" alt="' +
     h(recipe.name) +
-    '" loading="lazy" width="480" height="320">'
+    '" loading="lazy" width="512" height="512">'
   );
 }
 function card(recipe, note = "") {

@@ -1,11 +1,11 @@
 'use strict';
 
 const ingredientGroups = {
-  Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions',
-  Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame',
+  Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions|Pineapple|Garlic',
+  Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame|Canned light tuna in water|Lean ground beef|Smoked salmon',
   Dairy: 'Plain Greek yogurt|Parmesan|Feta|Cottage cheese|Milk',
   Grains: 'Whole-grain bread|Rolled oats|Whole-wheat tortilla|Quinoa|Brown rice|Whole-wheat pasta|Corn tortillas',
-  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water',
+  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water|Smoked paprika',
 };
 
 const ingredients = Object.fromEntries(
@@ -68,9 +68,9 @@ const recipeRows = [
   ['Mushroom and Spinach Frittata','Breakfast',10,22,2,'PVGM','A skillet frittata with golden mushrooms, wilted spinach and feta.',
     'Eggs:6:each|Mushrooms:150:g|Spinach:2:cups|Feta:0.5:cup|Olive oil:1:tbsp',
     'Heat oven to 375°F. In a small oven-safe skillet, sauté sliced mushrooms in oil until golden, about 6 minutes. Stir in spinach to wilt.|Beat eggs and pour into skillet. Scatter feta on top.|Bake for 14–16 minutes, until the center is set and reaches 160°F.'],
-  ['White Bean Tomato Toast','Lunch',10,5,2,'VD','Lemony mashed beans and blistered tomatoes on toasted grain bread.',
-    'Whole-grain bread:4:slices|White beans:1.5:cups|Cherry tomatoes:1:cup|Lemon:0.5:each|Olive oil:1:tbsp|Parsley:2:tbsp',
-    'Toast the bread. Drain and mash the beans with lemon juice and half the oil.|Sauté halved tomatoes in the remaining oil over medium-high heat for 4–5 minutes.|Spread beans on toast, spoon over tomatoes and finish with chopped parsley.'],
+  ['Lemon Herb Tuna Salad','Lunch',12,0,2,'PDGM','Flaked tuna, creamy white beans, cucumber and cherry tomatoes tossed in a lemon-herb dressing.',
+    'Canned light tuna in water:170:g|White beans:1:cup|Cucumber:0.5:each|Cherry tomatoes:1:cup|Parsley:0.25:cup|Lemon:1:each|Olive oil:1:tbsp|Dijon mustard:1:tsp',
+    'Drain the tuna and weigh it after draining. Drain and rinse the beans. Dice the cucumber, halve the tomatoes and chop the parsley.|Whisk the juice of the lemon with oil and Dijon. Toss with the beans, cucumber, tomatoes and parsley.|Flake in the tuna and fold gently. Divide between two plates, or chill until serving.'],
   ['Mango Chia Pudding','Breakfast',8,0,2,'VDM','Make-ahead chia pudding with ripe mango. Chill at least 4 hours.',
     'Unsweetened oat milk:1.25:cups|Chia seeds:0.33:cup|Mango:1:each|Maple syrup:2:tsp',
     'Whisk oat milk, chia and maple syrup. Let sit for 5 minutes, then whisk again to remove clumps.|Cover and chill at least 4 hours.|Dice the mango and spoon over two portions of pudding.'],
@@ -86,13 +86,28 @@ const recipeRows = [
   ['Chocolate Oat Energy Bites','Snack',15,0,4,'VDM','Chocolate-studded peanut butter bites that keep well chilled.',
     'Rolled oats:0.75:cup|Peanut butter:0.33:cup|Maple syrup:2:tbsp|Dark chocolate:30:g',
     'Finely chop the chocolate. Mix oats, peanut butter and maple syrup, then fold in the chocolate.|Roll into eight small bites. Chill for 20 minutes to firm if desired. Serve two per person.'],
+  ['Berry French Toast','Breakfast',7,10,2,'PV','Golden cinnamon French toast with fresh berries and a generous spoonful of Greek yogurt.',
+    'Whole-grain bread:4:slices|Eggs:2:each|Milk:0.25:cup|Ground cinnamon:0.5:tsp|Olive oil:2:tsp|Plain Greek yogurt:1:cup|Strawberries:0.5:cup|Blueberries:0.5:cup|Maple syrup:2:tsp',
+    'Whisk the eggs, milk and cinnamon in a shallow dish. Slice the strawberries.|Heat half the oil in a large nonstick skillet over medium heat. Dip two bread slices in the egg mixture to coat both sides. Cook 2–3 minutes per side until golden and set through. Repeat with the remaining bread and oil.|Serve two slices per person with yogurt, berries and a drizzle of maple syrup.'],
+  ['Sesame Ground Beef Bowl','Dinner',12,12,2,'PDGM','Lean ground beef with sesame and tamari over brown rice, with crunchy cucumber and carrot.',
+    'Lean ground beef:300:g|Brown rice:2:cups|Cucumber:0.5:each|Carrot:1:each|Scallions:2:each|Garlic:2:cloves|Tamari:1:tbsp|Olive oil:1:tsp|Sesame seeds:2:tsp|Lime:1:each',
+    'Dice the cucumber, grate the carrot and thinly slice the scallions. Peel and mince the listed number of garlic cloves.|Heat the oil in a skillet over medium-high heat. Brown the beef, breaking it into small pieces, until it reaches 160°F. Stir in garlic for 30 seconds, then add tamari and half the lime juice.|Warm the listed amount of cooked brown rice. Divide it between two bowls and top with beef, vegetables, scallions and sesame seeds. Serve with the remaining lime.'],
+  ['Pineapple Cottage Cheese Cup','Snack',5,0,1,'PVG','Creamy cottage cheese with juicy pineapple and a sprinkle of chia.',
+    'Cottage cheese:0.75:cup|Pineapple:0.5:cup|Chia seeds:1:tsp',
+    'Dice the pineapple flesh into bite-sized pieces.|Spoon cottage cheese into a bowl or cup. Top with pineapple and chia seeds.'],
+  ['Crispy Paprika Chickpeas','Snack',10,30,3,'VDG','Oven-roasted chickpeas with smoked paprika and a little sea salt.',
+    'Chickpeas:1.5:cups|Olive oil:1:tbsp|Smoked paprika:1:tsp|Salt:0.25:tsp',
+    'Heat oven to 425°F. Drain, rinse and thoroughly pat the chickpeas dry.|Toss with oil and spread in a single layer on a rimmed sheet pan. Roast 25–30 minutes, shaking the pan halfway, until crisp.|Toss the hot chickpeas with smoked paprika and salt. Let cool slightly and divide into three portions.'],
+  ['Smoked Salmon Cucumber Bites','Snack',10,0,2,'PG','Crunchy cucumber rounds with lemon yogurt, smoked salmon and scallions.',
+    'Cucumber:1:each|Smoked salmon:100:g|Plain Greek yogurt:0.5:cup|Lemon:0.25:each|Scallions:1:each',
+    'Cut the cucumber into 12 thick rounds and pat the tops dry. Thinly slice the scallion.|Stir a squeeze of lemon into the yogurt. Top each round with a spoonful of yogurt, a piece of smoked salmon and scallion.|Serve six rounds per person.'],
 ];
 
 const dietaryTags = {P:'High-protein', V:'Vegetarian', D:'Dairy-free', G:'Gluten-free', M:'Meal-prep friendly'};
 const recipes = recipeRows.map(([name,category,prep,cook,servings,labels,description,items,method], index) => ({
   id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
   name,category,prep,cook,servings,description,
-  photo:'./assets/recipe-' + (index + 1) + '.webp',
+  photo:'./assets/recipe-' + (index + 1) + '.webp?v=2',
   tags:[...labels].map(label => dietaryTags[label]),
   ingredients:items.split('|').map(item => {
     const [name, amount, unit] = item.split(':');

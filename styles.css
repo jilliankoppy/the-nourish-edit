@@ -264,6 +264,7 @@ button:hover {
   box-shadow: 0 10px 25px #172d4918;
 }
 .card img {
+  height: auto;
   aspect-ratio: 1.65;
 }
 .card-photo {
@@ -532,6 +533,8 @@ dialog::backdrop {
   margin: 0.55rem 0;
 }
 .dialog-body img {
+  height: auto;
+  aspect-ratio: 1.65;
   max-height: 290px;
   border-radius: 12px;
   margin-bottom: 0.8rem;
