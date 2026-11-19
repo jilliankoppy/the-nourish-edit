@@ -131,7 +131,7 @@ const dietaryTags = {P:'High-protein', V:'Vegetarian', D:'Dairy-free', G:'Gluten
 const recipes = recipeRows.map(([name,category,prep,cook,servings,labels,description,items,method], index) => ({
   id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
   name,category,prep,cook,servings,description,
-  photo:'./assets/recipe-' + (index + 1) + '.webp?v=3',
+  photo:'./assets/recipe-' + (index + 1) + '.webp?v=4',
   tags:[...labels].map(label => dietaryTags[label]),
   ingredients:items.split('|').map(item => {
     const [name, amount, unit] = item.split(':');
