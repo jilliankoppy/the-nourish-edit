@@ -16,6 +16,7 @@ const days = [
   "Sunday",
 ];
 const meals = ["Breakfast", "Lunch", "Dinner", "Snack"];
+const recipeCategories = [...meals, "Drinks"];
 const pages = [
   "home",
   "recipes",
@@ -298,9 +299,9 @@ function library() {
     "Search by name or ingredient, then narrow the library by meal or dietary preference.",
     '<div class="controls"><label for="recipe-search">Search recipes<input id="recipe-search" type="search" placeholder="Try salmon or avocado" value="' +
       h(filters.query) +
-      '"></label><div class="chips" role="group" aria-label="Meal category">' +
+      '"></label><div class="chips" role="group" aria-label="Recipe category">' +
       chips(
-        ["All", ...meals],
+        ["All", ...recipeCategories],
         "category",
         (label) => filters.category === label,
       ) +
@@ -475,10 +476,11 @@ function planner() {
 function planForm({ recipe, key }) {
   const entry = key && state.plan[key];
   const selected = recipe || (entry && byId.get(entry.id));
+  const defaultMeal = recipe?.category === "Drinks" ? "Snack" : recipe?.category;
   const [day, meal] = key
     ? key.split(":")
-    : ["0", String(meals.indexOf(recipe.category))];
-  const choices = meals
+    : ["0", String(meals.indexOf(defaultMeal))];
+  const choices = recipeCategories
     .map(
       (category) =>
         '<optgroup label="' +
@@ -555,8 +557,10 @@ function finder() {
   return heading(
     "Find my meal",
     "Choose what sounds good and see which recipes fit.",
-    '<form class="panel" id="finder-form"><div class="fields"><label>What meal are you looking for?<select name="meal">' +
-      meals.map((meal) => option(meal, meal, picks.meal)).join("") +
+    '<form class="panel" id="finder-form"><div class="fields"><label>What kind of recipe are you looking for?<select name="meal">' +
+      recipeCategories
+        .map((category) => option(category, category, picks.meal))
+        .join("") +
       '</select></label><label>How much time do you have?<select name="time">' +
       [
         ["15", "15 minutes"],
@@ -614,6 +618,10 @@ function kitchen() {
       '</datalist><button>Search my kitchen</button></form><div id="kitchen-results" class="below" aria-live="polite"></div>',
   );
 }
+function isKitchenStaple(item) {
+  return item.name === "Water" || item.name === "Ice";
+}
+
 function kitchenResults() {
   const terms = ingredientTerms(state.kitchen);
   const ranked = recipes
@@ -621,10 +629,10 @@ function kitchenResults() {
       recipe,
       missing: recipe.ingredients.filter(
         (item) =>
-          item.name !== "Water" &&
+          !isKitchenStaple(item) &&
           !terms.some((term) => item.name.toLowerCase().includes(term)),
       ),
-      count: recipe.ingredients.filter((item) => item.name !== "Water").length,
+      count: recipe.ingredients.filter((item) => !isKitchenStaple(item)).length,
     }))
     .filter((entry) => entry.missing.length < entry.count)
     .sort(
@@ -659,7 +667,7 @@ function groceryItems() {
     const recipe = byId.get(entry.id);
     if (!recipe) return;
     recipe.ingredients.forEach((item) => {
-      if (item.name === "Water") return;
+      if (isKitchenStaple(item)) return;
       // Normalize common measures while keeping weight and volume distinct.
       const volume = { cup: 48, tbsp: 3, tsp: 1 };
       const unit = volume[item.unit] ? "volume" : item.unit;
@@ -1103,7 +1111,7 @@ document.addEventListener(
   (event) => {
     if (event.target.tagName !== "IMG" || event.target.dataset.fallback) return;
     event.target.dataset.fallback = "true";
-    event.target.src = "./assets/recipe-6.webp?v=2";
+    event.target.src = "./assets/recipe-6.webp?v=3";
   },
   true,
 );

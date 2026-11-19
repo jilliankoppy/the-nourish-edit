@@ -2,7 +2,7 @@
 
 Eat well. Feel good. Plan beautifully.
 
-A static meal-planning website with 32 recipes, a weekly planner, a grocery list, saved favorites, a recipe finder, and a kitchen ingredient matcher.
+A static meal-planning website with 37 recipes, a weekly planner, a grocery list, saved favorites, a recipe finder, and a kitchen ingredient matcher.
 
 ## Run locally
 

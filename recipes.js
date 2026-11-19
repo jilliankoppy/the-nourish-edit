@@ -1,11 +1,11 @@
 'use strict';
 
 const ingredientGroups = {
-  Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions|Pineapple|Garlic',
+  Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions|Pineapple|Garlic|Frozen mixed berries',
   Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame|Canned light tuna in water|Lean ground beef|Smoked salmon|Bacon',
   Dairy: 'Plain Greek yogurt|Parmesan|Feta|Cottage cheese|Milk|Cheddar',
   Grains: 'Whole-grain bread|Rolled oats|Whole-wheat tortilla|Quinoa|Brown rice|Whole-wheat pasta|Corn tortillas|Whole-wheat English muffin|Whole-wheat flour',
-  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water|Smoked paprika|Baking soda',
+  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water|Smoked paprika|Baking soda|Espresso|Caramel syrup|Brown sugar|Unsweetened cocoa powder|Chocolate protein powder|Matcha powder|Ice',
 };
 
 const ingredients = Object.fromEntries(
@@ -53,7 +53,7 @@ const recipeRows = [
   ['Greek Chicken Salad','Lunch',12,0,2,'PGM','Crunchy vegetables, feta and cooked chicken in a lemon dressing.',
     'Cooked chicken breast:220:g|Romaine:3:cups|Cucumber:1:each|Cherry tomatoes:1:cup|Red onion:0.25:each|Feta:0.5:cup|Lemon:1:each|Olive oil:1:tbsp',
     'Use the listed weight of cooked chicken and slice it. Chop romaine and cucumber, halve tomatoes and thinly slice onion.|Whisk lemon juice and oil. Toss with the vegetables.|Divide between plates and top with chicken and crumbled feta.'],
-  ['Peanut Butter Banana Smoothie','Snack',5,0,1,'PVG','An icy banana smoothie with creamy peanut butter and Greek yogurt.',
+  ['Peanut Butter Banana Smoothie','Drinks',5,0,1,'PVG','An icy banana smoothie with creamy peanut butter and Greek yogurt.',
     'Banana:1:each|Peanut butter:1:tbsp|Plain Greek yogurt:0.75:cup|Milk:0.5:cup|Ground cinnamon:0.25:tsp',
     'Use peeled, frozen banana chunks. Add them to a blender with the peanut butter, yogurt, milk and cinnamon.|Blend until smooth, adding a splash of water if needed. Serve immediately.'],
   ['Apple and Peanut Butter Snack Plate','Snack',5,0,1,'VDG','A crisp apple with peanut butter and a dusting of cinnamon.',
@@ -101,7 +101,7 @@ const recipeRows = [
   ['Smoked Salmon Cucumber Bites','Snack',10,0,2,'PG','Crunchy cucumber rounds with lemon yogurt, smoked salmon and scallions.',
     'Cucumber:1:each|Smoked salmon:100:g|Plain Greek yogurt:0.5:cup|Lemon:0.25:each|Scallions:1:each',
     'Cut the cucumber into 12 thick rounds and pat the tops dry. Thinly slice the scallion.|Stir a squeeze of lemon into the yogurt. Top each round with a spoonful of yogurt, a piece of smoked salmon and scallion.|Serve six rounds per person.'],
-  ['Strawberry Mango Fruit Smoothie','Snack',5,0,1,'VG','A bright strawberry, mango and banana smoothie with creamy Greek yogurt.',
+  ['Strawberry Mango Fruit Smoothie','Drinks',5,0,1,'VG','A bright strawberry, mango and banana smoothie with creamy Greek yogurt.',
     'Strawberries:0.5:cup|Mango:0.5:cup|Banana:0.5:each|Plain Greek yogurt:0.5:cup|Milk:0.5:cup',
     'Hull the strawberries and dice the mango, or use the same amount of frozen fruit. Peel half a banana.|Add milk and yogurt to the blender, followed by the fruit. Blend until smooth, adding a splash of water if needed. Pour into a glass and serve.'],
   ['Bacon, Egg and Cheese Breakfast Sandwich','Breakfast',5,15,1,'P','Crisp bacon, a fried egg and melted cheddar on a toasted whole-wheat English muffin.',
@@ -110,13 +110,28 @@ const recipeRows = [
   ['Whole-Wheat Banana Bread','Snack',15,55,10,'VM','A cinnamon-scented whole-wheat loaf with ripe bananas, Greek yogurt and a touch of maple syrup.',
     'Banana:3:each|Whole-wheat flour:1.5:cups|Eggs:2:each|Plain Greek yogurt:0.25:cup|Olive oil:0.25:cup|Maple syrup:0.25:cup|Baking powder:1:tsp|Baking soda:0.5:tsp|Ground cinnamon:1:tsp|Salt:0.25:tsp',
     'Heat oven to 350°F and line a 9-by-5-inch loaf pan with parchment. Mash the three medium ripe bananas to make about 1¼ cups. Whisk with eggs, yogurt, oil and maple syrup.|Whisk flour, baking powder, baking soda, cinnamon and salt in a separate bowl. Fold the dry ingredients into the banana mixture just until no streaks of flour remain.|Scrape into the pan and bake for 45–55 minutes, until a toothpick in the center comes out clean or with a few moist crumbs. Cool in the pan for 15 minutes, then transfer to a rack before slicing into ten pieces.'],
+  ['Caramel Iced Latte','Drinks',5,0,1,'VG','Cold milk and bold espresso with a touch of caramel.',
+    'Espresso:2:fl oz|Milk:0.75:cup|Caramel syrup:2:tsp|Ice:0.75:cup',
+    'Stir the caramel syrup into two freshly brewed espresso shots until dissolved.|Fill a glass with ice, add the milk and pour the espresso on top. Stir before sipping.'],
+  ['Brown Sugar Iced Latte','Drinks',5,0,1,'VG','Espresso shaken with brown sugar and cinnamon, topped with cold milk.',
+    'Espresso:2:fl oz|Brown sugar:2:tsp|Ground cinnamon:0.125:tsp|Milk:0.75:cup|Ice:0.75:cup',
+    'Stir the brown sugar and cinnamon into two freshly brewed espresso shots. Let the espresso cool slightly.|Pour the espresso into a shaker with ice and shake until cold and foamy. Pour into a glass and top with milk.'],
+  ['Chocolate Protein Shake','Drinks',5,0,1,'P','A thick cocoa and banana shake with Greek yogurt and chocolate protein powder.',
+    'Milk:0.75:cup|Plain Greek yogurt:0.5:cup|Banana:0.5:each|Chocolate protein powder:25:g|Unsweetened cocoa powder:1:tsp',
+    'Peel and freeze half a banana in chunks ahead of time.|Blend milk, yogurt, frozen banana, protein powder and cocoa until smooth. Add a splash of cold water if you prefer a thinner shake.'],
+  ['Berry and Spinach Smoothie','Drinks',5,0,1,'VG','A fruity purple smoothie with mixed berries, baby spinach and Greek yogurt.',
+    'Frozen mixed berries:0.75:cup|Spinach:1:cup|Banana:0.5:each|Plain Greek yogurt:0.5:cup|Milk:0.5:cup',
+    'Rinse the spinach and peel half a banana.|Blend milk and spinach until the leaves break down. Add the berries, banana and yogurt and blend again until creamy.'],
+  ['Strawberry Matcha','Drinks',8,0,1,'VG','Fresh strawberry mash, cold milk and whisked matcha layered over ice.',
+    'Strawberries:0.5:cup|Maple syrup:1:tsp|Matcha powder:1:tsp|Water:2:tbsp|Milk:0.75:cup|Ice:0.75:cup',
+    'Hull the strawberries and mash them with the maple syrup in a glass.|Sift the matcha into a small bowl, add hot water at about 175°F and whisk until smooth and lightly foamy.|Add ice and cold milk to the strawberries. Pour the matcha slowly over the milk to layer, then stir to drink.'],
 ];
 
 const dietaryTags = {P:'High-protein', V:'Vegetarian', D:'Dairy-free', G:'Gluten-free', M:'Meal-prep friendly'};
 const recipes = recipeRows.map(([name,category,prep,cook,servings,labels,description,items,method], index) => ({
   id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
   name,category,prep,cook,servings,description,
-  photo:'./assets/recipe-' + (index + 1) + '.webp?v=2',
+  photo:'./assets/recipe-' + (index + 1) + '.webp?v=3',
   tags:[...labels].map(label => dietaryTags[label]),
   ingredients:items.split('|').map(item => {
     const [name, amount, unit] = item.split(':');
