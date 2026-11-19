@@ -1103,7 +1103,7 @@ document.addEventListener(
   (event) => {
     if (event.target.tagName !== "IMG" || event.target.dataset.fallback) return;
     event.target.dataset.fallback = "true";
-    event.target.src = "./assets/hero.webp";
+    event.target.src = "./assets/recipe-6.webp?v=2";
   },
   true,
 );
