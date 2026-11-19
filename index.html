@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Discover balanced recipes, plan your week, and make eating well feel effortless."
+    />
+    <meta name="theme-color" content="#F8F5ED" />
+    <title>The Nourish Edit · Eat well. Feel good. Plan beautifully.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./recipes.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <a class="skip" href="#content">Skip to content</a>
+    <header class="masthead">
+      <div class="nav-wrap">
+        <a href="#home" class="brand" aria-label="The Nourish Edit home"
+          >nourish<span>.</span></a
+        >
+        <button
+          id="menu"
+          class="outline menu"
+          aria-expanded="false"
+          aria-controls="nav"
+        >
+          Menu
+        </button>
+        <nav id="nav" aria-label="Main navigation">
+          <a href="#home">Home</a><a href="#recipes">Discover Recipes</a
+          ><a href="#planner">My Weekly Planner</a
+          ><a href="#grocery">Grocery List</a
+          ><a href="#favorites">My Favorites</a>
+        </nav>
+        <a class="pill finder-link" href="#finder">✧ &nbsp; Find My Meal</a>
+      </div>
+    </header>
+    <main id="content" tabindex="-1">
+      <section class="hero wrap">
+        <div class="hero-copy">
+          <p class="eyebrow">THE NOURISH EDIT</p>
+          <h1>A little planning.<br />A lot of <em>nourishment.</em></h1>
+          <p>
+            Discover balanced recipes, plan your week, and make eating well feel
+            effortless.
+          </p>
+          <div class="actions">
+            <a class="button" href="#recipes">Explore Recipes</a
+            ><a class="button outline" href="#planner">Start Planning</a>
+          </div>
+        </div>
+        <figure class="hero-photo">
+          <img
+            src="./assets/hero.webp"
+            alt="Grilled chicken, avocado and quinoa bowl on a sunlit table"
+            fetchpriority="high"
+          />
+        </figure>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap footer-row">
+        <a class="brand" href="#home">nourish<span>.</span></a>
+        <p>Eat well. Feel good. Plan beautifully.</p>
+        <a href="#kitchen">What’s in My Kitchen?</a>
+      </div>
+    </footer>
+    <dialog id="modal" aria-labelledby="dialog-title"></dialog>
+    <div id="notice" role="status" aria-live="polite"></div>
+  </body>
+</html>

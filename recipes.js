@@ -1,0 +1,102 @@
+'use strict';
+
+const ingredientGroups = {
+  Produce: 'Blueberries|Lemon|Avocado|Strawberries|Banana|Romaine|Cucumber|Cherry tomatoes|Parsley|Lime|Cilantro|Red cabbage|Sweet potato|Red onion|Apple|Baby potatoes|Green beans|Mushrooms|Spinach|Mango|Broccoli|Carrot|Scallions',
+  Protein: 'Eggs|Chicken breast|Cooked chicken breast|Sliced turkey|Salmon fillet|Peeled shrimp|Cod fillet|Firm tofu|Shelled edamame',
+  Dairy: 'Plain Greek yogurt|Parmesan|Feta|Cottage cheese|Milk',
+  Grains: 'Whole-grain bread|Rolled oats|Whole-wheat tortilla|Quinoa|Brown rice|Whole-wheat pasta|Corn tortillas',
+  Pantry: 'Chickpeas|Black beans|White beans|Olive oil|Chia seeds|Peanut butter|Maple syrup|Baking powder|Dijon mustard|Pesto|Salsa|Sesame seeds|Tamari|Unsweetened oat milk|Hummus|Ground cinnamon|Dark chocolate|Salt|Water',
+};
+
+const ingredients = Object.fromEntries(
+  Object.entries(ingredientGroups).flatMap(([group, names]) => names.split('|').map(name => [name, group]))
+);
+
+// Each recipe uses the listed base yield. Ingredient amounts refer to that full yield.
+const recipeRows = [
+  ['Blueberry Greek Yogurt Bowl','Breakfast',5,0,1,'PVG','Cool, creamy yogurt with blueberries, oats and a bright squeeze of lemon.',
+    'Plain Greek yogurt:1:cup|Blueberries:0.5:cup|Rolled oats:2:tbsp|Chia seeds:1:tsp|Lemon:0.25:each',
+    'Spoon the yogurt into a shallow bowl.|Top with blueberries, oats and chia seeds.|Squeeze the lemon over the berries and serve.'],
+  ['Avocado and Egg Toast','Breakfast',5,7,1,'VD','Creamy avocado and two fried eggs on crisp whole-grain toast.',
+    'Whole-grain bread:2:slices|Avocado:0.5:each|Eggs:2:each|Olive oil:1:tsp|Lemon:0.25:each',
+    'Toast the bread. Mash the avocado with a squeeze of lemon and spread it on the toast.|Heat the oil in a skillet over medium heat. Crack in the eggs and cook until the whites and yolks are set, about 5–7 minutes.|Lay the eggs on the toast.'],
+  ['Strawberry Overnight Oats','Breakfast',8,0,1,'VM','Make-ahead oats with ripe strawberries and tangy yogurt. Chill at least 6 hours.',
+    'Rolled oats:0.5:cup|Milk:0.5:cup|Plain Greek yogurt:0.25:cup|Strawberries:0.5:cup|Chia seeds:1:tsp',
+    'Stir the oats, milk, yogurt and chia seeds in a lidded jar.|Slice the strawberries and fold in half. Cover and refrigerate at least 6 hours.|Top with the remaining strawberries before eating.'],
+  ['Banana Protein Pancakes','Breakfast',8,12,2,'PV','Blended oat and banana pancakes with Greek yogurt on top.',
+    'Banana:1:each|Rolled oats:1:cup|Eggs:4:each|Baking powder:1:tsp|Olive oil:1:tsp|Plain Greek yogurt:1:cup',
+    'Blend the banana, oats, eggs and baking powder into a thick batter.|Brush a nonstick skillet with oil over medium heat. Cook small pancakes in batches for 2–3 minutes per side, until set through.|Divide between plates and top with yogurt.'],
+  ['Chicken Caesar Wrap','Lunch',12,0,2,'PM','A crisp romaine wrap with cooked chicken and a lemon-yogurt dressing.',
+    'Whole-wheat tortilla:2:each|Cooked chicken breast:200:g|Romaine:2:cups|Plain Greek yogurt:0.25:cup|Parmesan:2:tbsp|Lemon:0.5:each|Dijon mustard:1:tsp',
+    'Use the listed weight of cooked chicken and slice it into strips.|Whisk yogurt, Parmesan, lemon juice and mustard. Toss with chopped romaine and chicken.|Divide the filling between the tortillas, tuck in the sides and roll tightly.'],
+  ['Mediterranean Quinoa Bowl','Lunch',12,18,2,'VDGM','Lemony quinoa with chickpeas, crisp cucumber and juicy tomatoes.',
+    'Quinoa:0.75:cup|Water:1.5:cups|Chickpeas:1:cup|Cucumber:0.5:each|Cherry tomatoes:1:cup|Parsley:0.25:cup|Lemon:1:each|Olive oil:1:tbsp',
+    'Rinse quinoa, combine with the listed water and simmer covered for about 15 minutes. Rest covered for 3 minutes.|Drain the chickpeas. Dice cucumber, halve tomatoes and chop parsley.|Toss everything with the lemon juice and oil.'],
+  ['Turkey and Avocado Sandwich','Lunch',10,0,1,'PD','A whole-grain sandwich with turkey, creamy avocado and crunchy greens.',
+    'Whole-grain bread:2:slices|Sliced turkey:100:g|Avocado:0.5:each|Romaine:1:cup|Dijon mustard:1:tsp',
+    'Spread mustard on one bread slice and mash avocado onto the other.|Layer dry romaine and turkey between the slices. Cut in half to serve.'],
+  ['Grilled Chicken Burrito Bowl','Dinner',12,15,2,'PDGM','Lime chicken, black beans, avocado and salsa over warm brown rice.',
+    'Chicken breast:300:g|Brown rice:2:cups|Black beans:1:cup|Avocado:1:each|Salsa:0.5:cup|Lime:1:each|Olive oil:1:tsp',
+    'Halve thick chicken breasts horizontally. Coat with oil and half the lime juice.|Grill over medium-high heat until the thickest part reaches 165°F, about 5–7 minutes per side. Rest briefly and slice.|Warm the listed amount of cooked rice and drained beans. Divide into bowls and add chicken, sliced avocado, salsa and remaining lime juice.'],
+  ['Salmon Rice Bowl','Dinner',10,13,2,'PDGM','Roasted salmon, cucumber and sesame-tamari brown rice.',
+    'Salmon fillet:300:g|Brown rice:2:cups|Cucumber:0.5:each|Tamari:1:tbsp|Sesame seeds:1:tsp|Lime:0.5:each',
+    'Heat the oven to 425°F. Brush the salmon with half the tamari and roast until it reaches 145°F, about 10–13 minutes.|Warm the listed amount of cooked rice and dice the cucumber.|Divide rice, salmon and cucumber into bowls. Finish with sesame, remaining tamari and lime juice.'],
+  ['Pesto Chicken Pasta','Dinner',10,17,2,'PM','Whole-wheat pasta with pan-seared chicken, basil pesto and tomatoes.',
+    'Whole-wheat pasta:160:g|Chicken breast:280:g|Cherry tomatoes:1:cup|Pesto:3:tbsp|Olive oil:1:tsp',
+    'Cook pasta as directed. Reserve a small ladle of pasta water before draining.|Dice the chicken and brown it in oil in a skillet over medium-high heat until it reaches 165°F. Add halved tomatoes and cook 2 minutes.|Toss chicken and tomatoes with pasta, pesto and enough reserved water to loosen the sauce.'],
+  ['Shrimp Tacos','Dinner',10,6,2,'PDG','Quick-seared shrimp with lime cabbage and avocado on warm corn tortillas.',
+    'Peeled shrimp:300:g|Corn tortillas:4:each|Red cabbage:2:cups|Lime:1:each|Avocado:1:each|Olive oil:1:tsp|Cilantro:2:tbsp',
+    'Shred the cabbage and toss with half the lime juice. Slice avocado and chop cilantro.|Sear shrimp in oil over medium-high heat until opaque and firm, about 2 minutes per side. Warm the tortillas in a dry skillet.|Fill tortillas with cabbage, avocado and shrimp. Finish with cilantro and remaining lime.'],
+  ['Sweet Potato and Black Bean Bowl','Dinner',10,28,2,'VDGM','Roasted sweet potato, black beans and avocado with lime.',
+    'Sweet potato:2:each|Black beans:1.5:cups|Avocado:1:each|Lime:1:each|Olive oil:1:tbsp|Cilantro:2:tbsp',
+    'Heat oven to 425°F. Cut sweet potatoes into ¾-inch cubes and toss with oil.|Roast in one layer for 25–28 minutes, turning halfway, until tender.|Warm drained beans. Divide the beans and potatoes into bowls and finish with avocado, lime juice and cilantro.'],
+  ['Greek Chicken Salad','Lunch',12,0,2,'PGM','Crunchy vegetables, feta and cooked chicken in a lemon dressing.',
+    'Cooked chicken breast:220:g|Romaine:3:cups|Cucumber:1:each|Cherry tomatoes:1:cup|Red onion:0.25:each|Feta:0.5:cup|Lemon:1:each|Olive oil:1:tbsp',
+    'Use the listed weight of cooked chicken and slice it. Chop romaine and cucumber, halve tomatoes and thinly slice onion.|Whisk lemon juice and oil. Toss with the vegetables.|Divide between plates and top with chicken and crumbled feta.'],
+  ['Peanut Butter Banana Smoothie','Snack',5,0,1,'PVG','An icy banana smoothie with creamy peanut butter and Greek yogurt.',
+    'Banana:1:each|Peanut butter:1:tbsp|Plain Greek yogurt:0.75:cup|Milk:0.5:cup|Ground cinnamon:0.25:tsp',
+    'Use peeled, frozen banana chunks. Add them to a blender with the peanut butter, yogurt, milk and cinnamon.|Blend until smooth, adding a splash of water if needed. Serve immediately.'],
+  ['Apple and Peanut Butter Snack Plate','Snack',5,0,1,'VDG','A crisp apple with peanut butter and a dusting of cinnamon.',
+    'Apple:1:each|Peanut butter:2:tbsp|Ground cinnamon:0.25:tsp',
+    'Core the apple and slice it into wedges.|Spoon peanut butter into a small bowl and sprinkle with cinnamon. Serve alongside the apple.'],
+  ['Sesame Edamame','Snack',3,6,2,'PVDG','Warm edamame tossed with lime, tamari and sesame.',
+    'Shelled edamame:2:cups|Tamari:2:tsp|Sesame seeds:1:tsp|Lime:0.5:each',
+    'Boil the edamame according to the package until tender, about 5 minutes, and drain well.|Toss with tamari, sesame and lime juice. Divide into two bowls.'],
+  ['Lemon Cod and Potatoes','Dinner',15,35,2,'PDG','Flaky roasted cod with golden baby potatoes and green beans.',
+    'Cod fillet:320:g|Baby potatoes:400:g|Green beans:200:g|Olive oil:2:tbsp|Lemon:1:each',
+    'Heat oven to 425°F. Halve the potatoes, toss with half the oil and roast cut side down for 20 minutes.|Trim the beans and add them and the cod to the pan. Drizzle with remaining oil and half the lemon juice.|Roast another 12–15 minutes until the cod reaches 145°F and potatoes are tender. Serve with remaining lemon.'],
+  ['Mushroom and Spinach Frittata','Breakfast',10,22,2,'PVGM','A skillet frittata with golden mushrooms, wilted spinach and feta.',
+    'Eggs:6:each|Mushrooms:150:g|Spinach:2:cups|Feta:0.5:cup|Olive oil:1:tbsp',
+    'Heat oven to 375°F. In a small oven-safe skillet, sauté sliced mushrooms in oil until golden, about 6 minutes. Stir in spinach to wilt.|Beat eggs and pour into skillet. Scatter feta on top.|Bake for 14–16 minutes, until the center is set and reaches 160°F.'],
+  ['White Bean Tomato Toast','Lunch',10,5,2,'VD','Lemony mashed beans and blistered tomatoes on toasted grain bread.',
+    'Whole-grain bread:4:slices|White beans:1.5:cups|Cherry tomatoes:1:cup|Lemon:0.5:each|Olive oil:1:tbsp|Parsley:2:tbsp',
+    'Toast the bread. Drain and mash the beans with lemon juice and half the oil.|Sauté halved tomatoes in the remaining oil over medium-high heat for 4–5 minutes.|Spread beans on toast, spoon over tomatoes and finish with chopped parsley.'],
+  ['Mango Chia Pudding','Breakfast',8,0,2,'VDM','Make-ahead chia pudding with ripe mango. Chill at least 4 hours.',
+    'Unsweetened oat milk:1.25:cups|Chia seeds:0.33:cup|Mango:1:each|Maple syrup:2:tsp',
+    'Whisk oat milk, chia and maple syrup. Let sit for 5 minutes, then whisk again to remove clumps.|Cover and chill at least 4 hours.|Dice the mango and spoon over two portions of pudding.'],
+  ['Broccoli Tofu Rice Bowl','Dinner',12,20,2,'PVDGM','Golden tofu and roasted broccoli with sesame-tamari rice.',
+    'Firm tofu:400:g|Broccoli:300:g|Brown rice:2:cups|Tamari:1:tbsp|Olive oil:1:tbsp|Sesame seeds:2:tsp',
+    'Heat oven to 425°F. Pat tofu dry, cube it and cut the broccoli into florets.|Toss tofu and broccoli with oil, spread out and roast for 20 minutes, turning halfway.|Warm the listed amount of cooked rice. Serve topped with tofu, broccoli, tamari and sesame.'],
+  ['Carrots and Hummus','Snack',7,0,2,'VDG','Crunchy carrot sticks and a creamy hummus dip.',
+    'Carrot:3:each|Hummus:0.5:cup|Lemon:0.25:each|Parsley:1:tbsp',
+    'Peel and cut carrots into sticks.|Spoon hummus into a dish. Squeeze lemon over it and add chopped parsley.'],
+  ['Cucumber Cottage Cheese Toast','Lunch',8,3,1,'PV','Cool cucumber and creamy cottage cheese on whole-grain toast.',
+    'Whole-grain bread:2:slices|Cottage cheese:0.75:cup|Cucumber:0.25:each|Scallions:1:each',
+    'Toast the bread. Slice the cucumber and thinly slice the scallion.|Spread cottage cheese on both toasts and layer with cucumber and scallion.'],
+  ['Chocolate Oat Energy Bites','Snack',15,0,4,'VDM','Chocolate-studded peanut butter bites that keep well chilled.',
+    'Rolled oats:0.75:cup|Peanut butter:0.33:cup|Maple syrup:2:tbsp|Dark chocolate:30:g',
+    'Finely chop the chocolate. Mix oats, peanut butter and maple syrup, then fold in the chocolate.|Roll into eight small bites. Chill for 20 minutes to firm if desired. Serve two per person.'],
+];
+
+const dietaryTags = {P:'High-protein', V:'Vegetarian', D:'Dairy-free', G:'Gluten-free', M:'Meal-prep friendly'};
+const recipes = recipeRows.map(([name,category,prep,cook,servings,labels,description,items,method], index) => ({
+  id:name.toLowerCase().replace(/[^a-z0-9]+/g,'-'),
+  name,category,prep,cook,servings,description,
+  photo:'./assets/recipe-' + (index + 1) + '.webp',
+  tags:[...labels].map(label => dietaryTags[label]),
+  ingredients:items.split('|').map(item => {
+    const [name, amount, unit] = item.split(':');
+    return {name, amount:Number(amount), unit:({cups:'cup',slice:'slices'})[unit] || unit, group:ingredients[name]};
+  }),
+  steps:method.split('|'),
+}));
