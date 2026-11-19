@@ -622,11 +622,41 @@ dialog::backdrop {
     width: calc(100% - 30px);
   }
   .hero {
-    grid-template-columns: 1fr;
-    gap: 1.3rem;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+      "eyebrow photo"
+      "heading photo"
+      "description description"
+      "actions actions";
+    gap: 0.75rem;
+    align-items: start;
+  }
+  .hero-copy {
+    display: contents;
+  }
+  .hero-copy .eyebrow {
+    grid-area: eyebrow;
+    align-self: end;
+    margin-bottom: 0;
+  }
+  .hero-copy h1 {
+    grid-area: heading;
+    font-size: clamp(1.25rem, 5.75vw, 2.35rem);
+  }
+  .hero-copy > p:not(.eyebrow) {
+    grid-area: description;
+    margin: 0.35rem 0 0;
+  }
+  .hero-copy .actions {
+    grid-area: actions;
+  }
+  .hero-photo {
+    grid-area: photo;
+    align-self: center;
+    border-radius: 14px;
   }
   .hero-photo img {
-    aspect-ratio: 1.48;
+    aspect-ratio: 1;
   }
   .grid,
   .how-grid {
